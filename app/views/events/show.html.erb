@@ -3,3 +3,7 @@
 <p>At: <%= @event.location %></p>
 <p>Hosted by: <%= @event.host.name %></p>
 <p><%= @event.description %></p>
+<h2>Guests:</h2>
+<% @event.guests.each do |guest| %>
+<p><%= guest.name %></p>
+<% end %>

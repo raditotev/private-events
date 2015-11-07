@@ -1,0 +1,5 @@
+<h3><%= event.title %></h3>
+<p>Date:<%= event.date.to_formatted_s(:rfc822) %></p>
+<p>Location:<%= event.location %></p>
+<p>Description:<%= event.description %></p>
+<p>Hosted by : <%= event.host.name %></p>
