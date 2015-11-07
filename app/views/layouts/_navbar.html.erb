@@ -1,0 +1,14 @@
+<div class="header clearfix">
+  <nav>
+    <ul class="nav nav-pills pull-right">
+      <li role="presentation"><%= link_to "Events", events_path %></li>
+      <% if signed_in? %>
+      <li role="presentation"><%= link_to "My Events", user_path(current_user) %></li>
+      <li role="presentation"><%= link_to "Log out", events_path %></li>
+      <% else %>
+      <li role="presentation"><%= link_to "Log in", new_session_path %></li>
+      <% end %>
+    </ul>
+  </nav>
+  <h3 class="text-muted"><%= link_to "Private Events" %></h3>
+</div>
