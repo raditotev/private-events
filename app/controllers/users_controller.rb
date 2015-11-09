@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  def index
+    @upcoming_events = Event.where('date >= ?', Time.now).limit(3)
+    @past_events = Event.where('date < ?', Time.now).limit(3)
+  end
+
   def new
     @user = User.new
   end
