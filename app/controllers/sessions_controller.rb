@@ -6,10 +6,16 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email])
-    if user
+    if user && user.authenticate(params[:session][:password])
       sign_in user
-      redirect_to current_user
+      redirect_to root_url
     end
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    logout(user)
+    redirect_to root_url
   end
 
 end
