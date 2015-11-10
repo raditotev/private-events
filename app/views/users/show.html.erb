@@ -1,12 +1,12 @@
 <% if creator?(@user) %>
 <h1 style="text-align: center;">Hello, <%= @user.name %>!</h1>
 <% else %>
-<h1 style="text-align: center;"><%= @user.name %> Events</h1>
+<h1 style="text-align: center;"><%= @user.name %>'s Events</h1>
 <% end %>
 
 <div class="row center">
-  <div class="col-md-6">
-    <h2>Upcoming Events</h2>
+  <div class="col-md-4">
+    <h2>Your Upcoming Events</h2>
     <% if @upcoming_events.count == 0 %>
     <p>You don't have any upcoming events. <%= link_to "Create event", new_event_path %>?</p>
     <% else %>
@@ -14,7 +14,22 @@
     <%= render @upcoming_events %>
     <% end %>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-4">
+    <h2>Invitations</h2>
+    <% @invitations.each do |event| %>
+    <h3><%= event.title %></h3>
+    <p>Date:<%= event.date.to_formatted_s(:rfc822) %></p>
+    <p>Location:<%= event.location %></p>
+    <p>Description:<%= event.location %></p>
+    <p>Hosted by : <%= event.host.name %></p>
+      <%= form_for(:decline, url: uninvite_path, method: 'delete') do |f| %>
+      <%= hidden_field_tag :event_id, event.id %>
+      <%= hidden_field_tag :guest_id, current_user.id %>
+      <%= f.submit "Decline", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-4">
     <h2>Past events</h2>
     <% if @past_events.count == 0 %>
     <p>You don't have any past events.</p>

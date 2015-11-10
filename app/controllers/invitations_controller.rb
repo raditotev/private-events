@@ -2,9 +2,9 @@ class InvitationsController < ApplicationController
 
   def create
     @event = Event.find(params[:event_id])
-    user = User.find_by(email: params[:invitation][:guest_email])
-    if user && @event
-      @event.invitations.create(guest_id: user.id)
+    guest = User.find_by(email: params[:invitation][:guest_email])
+    if guest && @event
+      @event.invitations.create(guest_id: guest.id)
       redirect_to @event
     else
       # Add error message
@@ -18,4 +18,5 @@ class InvitationsController < ApplicationController
     invitation.destroy
     redirect_to @event
   end
+
 end

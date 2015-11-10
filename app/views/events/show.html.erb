@@ -2,7 +2,7 @@
 <p>Taking place on: <%= @event.date.strftime("%d/%m/%Y") %></p>
 <p>At: <%= @event.location %></p>
 <p>Description:<%= @event.description %></p>
-<% if creator?(@event.host) %>
+<% if creator?(@user) %>
 <%= form_for(:invitation, url: invitations_path) do |f| %>
 <p>
   <%= hidden_field_tag :event_id, @event.id %>

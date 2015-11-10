@@ -1,6 +1,8 @@
 module UsersHelper
 
   def creator?(user)
-    current_user.id == user.id
+    if current_user
+      current_user.id == user.id
+    end
   end
 end
