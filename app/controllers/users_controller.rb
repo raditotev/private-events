@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :signed_in_user, only: [:show]
 
   def index
     @upcoming_events = Event.where('date >= ?', Time.now).limit(3)
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @upcoming_events = @user.events.where('date >= ?', Time.now)
     @past_events = @user.events.where('date < ?', Time.now)
-    # @events = @user.events
   end
 
   private

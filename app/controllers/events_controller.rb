@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :signed_in_user, only: [:new, :create]
 
   def index
     @upcoming_events = Event.where('date >= ?', Time.now)
