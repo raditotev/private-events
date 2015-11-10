@@ -2,8 +2,8 @@ class EventsController < ApplicationController
   before_action :signed_in_user, only: [:new, :create]
 
   def index
-    @upcoming_events = Event.where('date >= ?', Time.now)
-    @past_events = Event.where('date < ?', Time.now)
+    @upcoming_events = Event.upcoming
+    @past_events = Event.past
   end
 
   def new

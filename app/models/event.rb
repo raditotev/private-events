@@ -7,4 +7,7 @@ class Event < ActiveRecord::Base
                           uniqueness: true
   validates :date, presence:true
   validates :description, presence: true
+
+  scope :upcoming, -> {where('date >= ?', Time.now)}
+  scope :past,         -> {where('date < ?', Time.now)}
 end

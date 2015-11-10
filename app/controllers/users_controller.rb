@@ -22,8 +22,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @upcoming_events = @user.events.where('date >= ?', Time.now)
-    @past_events = @user.events.where('date < ?', Time.now)
+    @upcoming_events = @user.events.upcoming
+    @past_events = @user.events.past
   end
 
   private
