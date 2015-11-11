@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_action :signed_in_user, only: [:show]
 
   def index
-    @upcoming_events = Event.where('date >= ?', Time.now).limit(3)
-    @past_events = Event.where('date < ?', Time.now).limit(3)
+    @upcoming_events = Event.upcoming.limit(3)
+    @past_events = Event.past.limit(3)
   end
 
   def new

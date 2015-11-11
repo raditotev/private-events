@@ -3,14 +3,15 @@
 <p>At: <%= @event.location %></p>
 <p>Description:<%= @event.description %></p>
 <% if creator?(@user) %>
-<%= form_for(:invitation, url: invitations_path) do |f| %>
-<p>
-  <%= hidden_field_tag :event_id, @event.id %>
-  <%= f.label "Enter guest's email:" %>
-  <%= f.text_field :guest_email %>
-</p>
-<%= f.submit "Invite", class: "btn btn-primary" %>
-<% end %>
+  <%= form_for(:invitation, url: invitations_path) do |f| %>
+  <p>
+    <%= hidden_field_tag :event_id, @event.id %>
+    <%= hidden_field_tag :id, @event.host.id %>
+    <%= f.label "Enter guest's email:" %>
+    <%= f.text_field :guest_email %>
+  </p>
+  <%= f.submit "Invite", class: "btn btn-primary" %>
+  <% end %>
 <% end %>
 <h2>Guests:</h2>
 <% @event.guests.each do |guest| %>
@@ -19,6 +20,7 @@
   <%= form_for(:uninvite, url: uninvite_path, method: 'delete') do |f| %>
     <%= hidden_field_tag :event_id, @event.id %>
     <%= hidden_field_tag :guest_id, guest.id %>
+    <%= hidden_field_tag :id, current_user.id %>
   <%= f.submit "Uninvite", class: "btn btn-primary" %>
   <% end %>
 </p>
