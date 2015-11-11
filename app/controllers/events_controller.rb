@@ -11,9 +11,9 @@ class EventsController < ApplicationController
   end
 
   def create
-    event = current_user.events.build(event_params)
-    if event.save
-      redirect_to event
+    @event = current_user.events.build(event_params)
+    if @event.save
+      redirect_to @event
     else
       render :new
     end
