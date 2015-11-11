@@ -1,3 +1,7 @@
+<div class="pull-right">
+<%= link_to 'Delete account', user_path(current_user), method: 'delete' %>
+</div>
+
 <% if creator?(@user) %>
 <h1 style="text-align: center;">Hello, <%= @user.name %>!</h1>
 <% else %>

@@ -28,6 +28,15 @@ class UsersController < ApplicationController
     @past_events = @user.events.past
   end
 
+  def destroy
+    user = User.find(params[:id])
+    logout(user)
+    @current_user = nil
+    user.destroy
+     flash[:success] = "Your account has been deleted."
+     redirect_to root_url
+  end
+
   private
 
   def user_params
