@@ -1,29 +1,35 @@
-<h1>Create event</h1>
+<h1 class="center">Create event</h1>
 
-<%= form_for @event do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @event, html: {class: "form-horizontal"} do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
 
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
+    <div class="form-group">
+      <%= f.label :title, class: "control-label col-sm-4" %>
+      <%= f.text_field :title, class: "col-sm-8"  %>
+    </div>
 
-  <p>
-    <%= f.label :event_date %>
-    <%= f.date_field :date %>
-  </p>
+    <div class="form-group">
+      <%= f.label :event_date, class: "control-label col-sm-4" %>
+      <%= f.date_field :date, class: "col-sm-8"  %>
+    </div>
 
-  <p>
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-  </p>
+    <div class="form-group">
+      <%= f.label :location, class: "control-label col-sm-4" %>
+      <%= f.text_field :location, class: "col-sm-8"  %>
+    </div>
 
-  <p>
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </p>
+    <div class="form-group">
+      <%= f.label :description, class: "control-label col-sm-4" %>
+      <%= f.text_field :description, class: "col-sm-8"  %>
+    </div>
 
-  <p>
-    <%= f.submit "Create event" %>
-  </p>
-<% end %>
+    <div class="center">
+      <%= f.submit "Create event", class: 'btn btn-primary' %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+

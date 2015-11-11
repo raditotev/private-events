@@ -28,6 +28,21 @@ class UsersController < ApplicationController
     @past_events = @user.events.past
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(user_params)
+    if @user.save
+      flash[:success] = "Your account has been updated."
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
+
   def destroy
     user = User.find(params[:id])
     logout(user)
