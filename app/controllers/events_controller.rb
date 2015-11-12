@@ -25,6 +25,29 @@ class EventsController < ApplicationController
     @user = @event.host
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @event.update_attributes(event_params)
+    if @event.save
+      flash[:success] = "Event has been updated."
+      redirect_to @event
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    event = Event.find(params[:id])
+    @user = event.host
+    event.destroy
+    flash[:success] = "Event has been deleted."
+    redirect_to @user
+  end
+
   private
 
   def event_params

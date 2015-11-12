@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :events, only: [:index, :new, :create, :show]
+  resources :events
   resources :invitations, only: [:create]
 end
